@@ -13,7 +13,7 @@ import org.springframework.core.env.Environment;
 
 //@EnableAspectJAutoProxy
 @SpringBootApplication
-@Import(DynamicDataSourceRegister.class) //  Register dynamic multiple data sources
+//@Import(DynamicDataSourceRegister.class) //  Register dynamic multiple data sources
 public class SpringBootSampleApplication {
 
     public static void main(String[] args) {

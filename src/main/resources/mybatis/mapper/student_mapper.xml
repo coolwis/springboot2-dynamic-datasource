@@ -2,8 +2,54 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.springboot.sample.mapper.StudentMapper">
+
+    <resultMap id="resForClobMap"  type="org.springboot.sample.vo.ResMap">
+        <result column="SUM_SCORE" property="sumScore" javaType="java.lang.String" jdbcType="CLOB"/>
+        <result column="BLOB_COL" property="blobCol" javaType="byte[]" jdbcType="BLOB"/>
+
+    </resultMap>
+
+    <select id="getList2"  parameterType="Map" resultMap="resForClobMap">
+        SELECT id
+        ,age
+        ,name
+        ,age_score
+        , SUM_SCORE
+       --, DBMS_LOB.SUBSTR(SUM_SCORE, 2000, 1) AS SUM_SCORE
+        , BLOB_COL
+        --, UTL_RAW.CAST_TO_VARCHAR2(DBMS_LOB.SUBSTR(BLOB_COL)) as BLOB_DATA
+         FROM student
+    </select>
+
+<!--    {-->
+<!--    "id": 12-->
+<!--    ,"name": "2022-06-26 18:20:15.999"-->
+<!--    ,"age_score" : "20220626182011"-->
+<!--    ,"sum_score":  "clob8"-->
+<!--    ,"blob_col": "8"-->
+<!--    }-->
+
+    <insert id="insertTest"  parameterType="HashMap">
+        insert into student (
+        id
+        ,name
+        ,age_score
+        ,sum_score
+        ,blob_col
+        ) values
+        (
+        #{id}
+        ,#{name, jdbcType=TIMESTAMP}
+        ,TO_DATE(#{age_score}, 'YYYYMMDDHH24MISS')
+        ,#{sum_score, jdbcType=CLOB}
+        ,#{blob_col, jdbcType=BLOB}
+        )
+    </insert>
+
+
     <select id="getList" resultType="org.springboot.sample.entity.Student">
         SELECT id,age,name, sum_score , age_score
-        FROM public.student
+        FROM student
     </select>
+
 </mapper>

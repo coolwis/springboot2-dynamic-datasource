@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <typeAliases>
+<!--        <package name="패키지명"/>-->
+    </typeAliases>
+
+    <typeHandlers>
+        <!--  java.sql.Timestamp 를 java.util.Date 형으로 반환 -->
+        <typeHandler javaType="oracle.sql.TIMESTAMP" jdbcType="TIMESTAMP" handler="org.apache.ibatis.type.SqlTimestampTypeHandler"/>
+        <typeHandler javaType="java.sql.Timestamp" handler="org.apache.ibatis.type.SqlTimestampTypeHandler"/>
+        <typeHandler javaType="java.sql.Time"      handler="org.apache.ibatis.type.DateTypeHandler"/>
+        <typeHandler javaType="java.sql.Date"      handler="org.apache.ibatis.type.DateTypeHandler"/>
+        <typeHandler javaType="java.util.Date"      handler="org.apache.ibatis.type.DateTypeHandler"/>
+
+
+        <typeHandler javaType="java.lang.String" jdbcType="CLOB" handler="org.apache.ibatis.type.ClobTypeHandler"/>
+        <!--아래 핸들러는 동작안함  deprecated (oracle.sql.CLOB) -->
+        <typeHandler javaType="oracle.sql.CLOB" jdbcType="CLOB" handler="org.apache.ibatis.type.ClobTypeHandler"/>
+<!--        oracle.sql.CLOB-->
+
+<!--        <typeHandler javaType="java.lang.String" jdbcType="Clob" handler="org.apache.ibatis.type.ClobTypeHandler"/>-->
+<!--        <typeHandler handler="chapter5.org.mybatis.custom.ClobTypeHandler" jdbcType="CLOB" javaType="java.lang.String" />-->
+<!--        <typeHandler handler="chapter5.org.mybatis.custom.BlobTypeHandler" jdbcType="BLOB" javaType="java.lang.String" />-->
+
+
+    </typeHandlers>
+
+</configuration>
